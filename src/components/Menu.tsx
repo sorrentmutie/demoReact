@@ -1,4 +1,5 @@
 import { useState } from "react"
+import cn from 'classnames';
 
 export const Menu = () => {
 
@@ -6,12 +7,14 @@ const [opened, setOpened]   = useState<boolean>(false);
 const toggle = () => {
     setOpened(!opened);
 }
-const cls = opened ? 'navbar-brand opened-brand': 'navbar-brand';
+// const cls = opened ? 'navbar-brand opened-brand': 'navbar-brand';
+// const cls = cn('navbar-brand',{'opened-brand': opened});
+
 console.log('render: ' + opened);
 
 return <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 <div className="container-fluid">
-  <div className={cls}  onClick={toggle} >Corso React</div>
+  <div className={cn('navbar-brand',{'opened-brand': opened})}  onClick={toggle} >Corso React</div>
   <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
