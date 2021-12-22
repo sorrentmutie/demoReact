@@ -15,7 +15,7 @@ const  App = () =>  {
   }
 
   const renderMessage = () => {
-    return products === 0 ? <Empty/> : <Products value={products} data="123"/>;
+    return products === 0 ? <Empty/> : <Products value={products} />;
   } 
 
   return (
@@ -30,7 +30,7 @@ const  App = () =>  {
 
 interface ProductsProps {
   value: number,
-  data: string
+  data?: string
 }
 export const Products = (props: ProductsProps) =>  <h3>{props.value} {props.data }prodotti</h3>
 
