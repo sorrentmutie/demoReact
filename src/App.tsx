@@ -1,27 +1,21 @@
 import React from 'react';
+import { Empty }from './Empty';
 import './App.css';
-
-interface Person {
-  name: string,
-  surname: string,
-  age: number
-}
-
 
 const  App = () =>  {
   const products: number = 10;
 
 
-  const renderEmpty = () => {
-    return <h3>Carrello vuoto</h3>
-  }
+  // const renderEmpty = () => {
+  //   return <h3>Carrello vuoto</h3>
+  // }
 
   const renderProducts = () => {
     return <h3>{products} prodotti</h3>
   }
 
   const renderMessage = () => {
-    return products === 0 ? renderEmpty() : renderProducts();
+    return products === 0 ? <Empty/> : <Products value={products} data="123"/>;
   } 
 
   return (
@@ -33,5 +27,11 @@ const  App = () =>  {
     </>
   );
 }
+
+interface ProductsProps {
+  value: number,
+  data: string
+}
+export const Products = (props: ProductsProps) =>  <h3>{props.value} {props.data }prodotti</h3>
 
 export default App;

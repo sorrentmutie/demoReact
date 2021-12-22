@@ -1,0 +1,1 @@
+export const Empty = () => <h3> Carrello vuoto </h3>
