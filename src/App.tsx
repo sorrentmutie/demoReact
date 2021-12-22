@@ -1,6 +1,7 @@
 import React from 'react';
 import { Empty }from './components/Empty';
 import { Products2 }  from './components/Products';
+import { Menu } from './components/Menu';
 import './App.css';
 
 const  App = () =>  {
@@ -15,6 +16,8 @@ const  App = () =>  {
 
   return (
     <>
+
+      <Menu></Menu>
       <header className="App-header">
         <h2>Benvenuti al corso React</h2>
         <div className="badge bg-primary">Ciao</div>
