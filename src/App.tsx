@@ -1,37 +1,37 @@
 import React from 'react';
-import { Empty }from './Empty';
+import { Empty }from './components/Empty';
+import { Products2 }  from './components/Products';
 import './App.css';
 
 const  App = () =>  {
   const products: number = 10;
-
-
-  // const renderEmpty = () => {
-  //   return <h3>Carrello vuoto</h3>
-  // }
-
-  const renderProducts = () => {
-    return <h3>{products} prodotti</h3>
-  }
+  const gender: string = 'M';
+  const wrapperClass: string = gender === 'M' ? 
+    'App-male' : 'App-female'
 
   const renderMessage = () => {
-    return products === 0 ? <Empty/> : <Products value={products} />;
+    return products === 0 ? <Empty/> : <Products2 value={products} />;
   } 
 
   return (
     <>
       <header className="App-header">
         <h2>Benvenuti al corso React</h2>
+        <div className="badge bg-primary">Ciao</div>
+
+         <div className={wrapperClass}>
+           You are {gender === 'M' ? 'male' : 'female'}
+         </div>
+        
+        
+        <div style={ { color: 'red'}}>Prova</div>
         <h3>{renderMessage()}</h3>
       </header>
     </>
   );
 }
 
-interface ProductsProps {
-  value: number,
-  data?: string
-}
-export const Products = (props: ProductsProps) =>  <h3>{props.value} {props.data }prodotti</h3>
+
+
 
 export default App;
