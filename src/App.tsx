@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+interface Person {
+  name: string,
+  surname: string,
+  age: number
+}
+
+
+const  App = () =>  {
+  const products: number = 10;
+
+
+  const renderEmpty = () => {
+    return <h3>Carrello vuoto</h3>
+  }
+
+  const renderProducts = () => {
+    return <h3>{products} prodotti</h3>
+  }
+
+  const renderMessage = () => {
+    return products === 0 ? renderEmpty() : renderProducts();
+  } 
+
   return (
-    <div className="App">
+    <>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>Benvenuti al corso React</h2>
+        <h3>{renderMessage()}</h3>
       </header>
-    </div>
+    </>
   );
 }
 
