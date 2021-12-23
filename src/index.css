@@ -19,3 +19,7 @@ code {
 .button-margin {
   margin-bottom: 10px;
 }
+
+.card-mappa {
+  max-width: 20rem;
+}

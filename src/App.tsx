@@ -11,7 +11,6 @@ import { PricingPage } from './pages/Pricing/PricingPage';
 const  App = () =>  {
   const [items, setItems] = useState<MenuItem[]>([]);
   useEffect( () => {
-    console.log("useEffects");
     Axios.get<MenuItem[]>('http://localhost:4001/menuitems')
     .then( response => setItems(response.data))
   }, []);  

@@ -9,7 +9,7 @@ export interface MapQuestProps {
 
 export const MapQuest: 
    React.FC<MapQuestProps & React.ImgHTMLAttributes<HTMLImageElement>> = 
-   ({city, width = 400, height= 400, ...rest}) => {
+   ({city, width = 180, height= 180, ...rest}) => {
     const key = '2yQuTXXx8Mvpn9AdLyW4k4vGUC0uU2Ul';
     const baseUrl = 'https://www.mapquestapi.com/staticmap/v5/map?';
     const mapUrl = 
