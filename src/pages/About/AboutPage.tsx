@@ -2,18 +2,40 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import { MapQuest } from '../../shared/MapQuest';
 
+
+export interface FormsData {
+    name: string;
+    email: string;
+    isCompany?: boolean;
+}
+
 export const AboutPage: React.FC = () => {
-    const [city, setCity] = useState<string>("Napoli");
+    const [data, setData] = useState<FormsData>(
+        {name: 'Napoli', email: 'pippo@gmail.com'}
+    );
 
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-            setCity(event.currentTarget.value);
-            console.log(event.currentTarget.value);
+            setData( {
+                ...data,
+                [event.currentTarget.name] : event.currentTarget.value
+            });
     }
 
-    const isValidCity = city.length > 3;
+
+    const validateEmail = (email: string) => {
+        var regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              
+            // Converting the email to lowercase
+        return regexp.test(String(email).toLowerCase());
+    }
+
+    const isValidCity = data.name.length > 3;
+    const isValidEmail = validateEmail(data.email);
+    const isValidForm = isValidCity && isValidEmail;
+
 
     const onSubmitHandler  = () => {
-        window.alert(city);
+        window.alert(JSON.stringify(data));
     }
 
 
@@ -22,23 +44,37 @@ export const AboutPage: React.FC = () => {
 
            <form onSubmit={onSubmitHandler}>
                 <input type="text" 
-                        name="city"
+                        name="name"
                         className={classNames(
                             "form-control", 
                             { 
-                                "is-valid": isValidCity,
+                                "is-valid": validateEmail,
                                 "is-invalid": !isValidCity
                             })}
                         placeholder="Type a city"
-                        value = {city}
+                        value = {data.name}
                         onChange={onChangeHandler}/>
+
+                <input type="text" 
+                        name="email"
+                        className={classNames(
+                            "form-control", 
+                            { 
+                                "is-valid": isValidEmail,
+                                "is-invalid": !isValidEmail
+                            })}
+                        placeholder="Type an email"
+                        value = {data.email}
+                        onChange={onChangeHandler}/>
+
+                <button className="btn btn-success" type="submit" 
+                disabled={!isValidForm}>OK</button>
+
             </form>
 
-            <button className="btn btn-success" type="submit" 
-                disabled={!isValidCity}>OK</button>
 
             <MapQuest 
-               city="Naples, Italy"
+               city={data.name}
                alt = "My Alt"
                onClick = { () => console.log('click')}
                onMouseOver = { () => console.log('mouse over')}
