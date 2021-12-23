@@ -1,16 +1,26 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import cn from 'classnames';
 
-export const Menu = () => {
+export interface MenuItem {
+    key: string,
+    text: string,
+    url: string
+}
+
+export interface MenuProps {
+    items: MenuItem[],
+    onItemClicked: (url: string) => void
+}
+
+
+export const Menu: React.FC<MenuProps> = (props) => {
 
 const [opened, setOpened]   = useState<boolean>(false);  
 const toggle = () => {
     setOpened(!opened);
 }
-// const cls = opened ? 'navbar-brand opened-brand': 'navbar-brand';
-// const cls = cn('navbar-brand',{'opened-brand': opened});
 
-console.log('render: ' + opened);
+
 
 return <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 <div className="container-fluid">
@@ -24,30 +34,18 @@ return <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 
   <div className="collapse navbar-collapse" id="navbarColor01">
     <ul className="navbar-nav me-auto">
-      <li className="nav-item">
-        <div className="nav-link active">Home
-          <span className="visually-hidden">(current)</span>
-        </div>
-      </li>
-      <li className="nav-item">
-        <div className="nav-link">Features</div>
-      </li>
-      <li className="nav-item">
-        <div className="nav-link">Pricing</div>
-      </li>
-      <li className="nav-item">
-        <div className="nav-link">About</div>
-      </li>
-      <li className="nav-item dropdown">
-        <div className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</div>
-        <div className="dropdown-menu">
-          <div className="dropdown-item">Action</div>
-          <div className="dropdown-item" >Another action</div>
-          <div className="dropdown-item" >Something else here</div>
-          <div className="dropdown-divider"></div>
-          <div className="dropdown-item" >Separated link</div>
-        </div>
-      </li>
+      {
+          props.items.map( (item) => {
+                return (
+                    <li key={item.key} className="nav-item" 
+                        onClick={() => props.onItemClicked(item.url)}>
+                        <div className="nav-link active">{item.text}
+                        <span className="visually-hidden">(current)</span>
+                        </div>
+                    </li>
+                );
+          })
+      }
     </ul>
   </div>
 </div>
