@@ -15,3 +15,7 @@ code {
 .opened-brand {
   background-color: darkgoldenrod;
 }
+
+.button-margin {
+  margin-bottom: 10px;
+}

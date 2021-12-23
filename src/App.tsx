@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { Menu, MenuItem } from './components/Menu';
 import './App.css';
-import { HomePage } from './pages/HomePage';
+import { HomePage } from './pages/Home/HomePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AboutPage } from './pages/AboutPage';
-import { FeaturesPage } from './pages/FeaturesPage';
-import { PricingPage } from './pages/PricingPage';
+import { AboutPage } from './pages/About/AboutPage';
+import { FeaturesPage } from './pages/Features/FeaturesPage';
+import { PricingPage } from './pages/Pricing/PricingPage';
 
 const  App = () =>  {
   const [items, setItems] = useState<MenuItem[]>([]);
